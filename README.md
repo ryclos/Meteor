@@ -23,7 +23,9 @@ Meteor developers :
 Informations:
 
 Meteor is developed in C# with Visual Studio 2012.
+
 Database : MySQL
+
 App type : Console
 
 -------
@@ -31,9 +33,13 @@ App type : Console
 Install instructions:
 
 1) Install the database (meteor.sql)
+
 2) Configure "meteor.exe.config"
+
 3) Copy your "gameres" folder from your CFlyFF client and past it in the Meteor "Binary" folder.
+
 4) Run the "Meteor.exe"
+
 5) Enjoy !
 
 I'll post more tutorials later... :)
