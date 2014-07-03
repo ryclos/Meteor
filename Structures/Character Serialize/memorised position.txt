@@ -1,0 +1,24 @@
+/* Memorised position */
+
+add int -> position_count
+for (i = 0; i < position_count; i++)
+	add int -> index
+	add int -> world_id
+	add int -> pos_x
+	add int -> pos_z
+	add string -> pos name
+end
+
+=== Lua ===
+
+for i = 1, pos_num do
+      local pos = {}
+      pos.index = LAr:ReadInt(ar)
+      pos.world_id = LAr:ReadInt(ar)
+      pos.pos_x = LAr:ReadInt(ar)
+      pos.pos_z = LAr:ReadInt(ar)
+      pos.name = LAr:ReadString(ar)
+      table.insert(self.m_memory_pos, pos)
+end
+
+===========

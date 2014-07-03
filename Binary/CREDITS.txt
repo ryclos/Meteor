@@ -1,0 +1,16 @@
+METEOR EMULATOR © 2014
+
+SPECIAL THANKS TO :
+
+- lesderid
+
+who creates uXinEmu cFlyFF emulator, and the FFEncryptionLibrary.
+
+DEVELOPPERS :
+
+- ShyroFR
+
+SUPPORTERS :
+
+- iStyle
+- SoDream

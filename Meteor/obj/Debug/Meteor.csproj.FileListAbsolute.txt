@@ -1,0 +1,6 @@
+G:\FILIPE\CFLYFF\Meteor\Binary\Meteor.exe.config
+G:\FILIPE\CFLYFF\Meteor\Binary\Meteor.exe
+G:\FILIPE\CFLYFF\Meteor\Binary\Meteor.pdb
+G:\FILIPE\CFLYFF\Meteor\Meteor\obj\Debug\Meteor.csprojResolveAssemblyReference.cache
+G:\FILIPE\CFLYFF\Meteor\Meteor\obj\Debug\Meteor.exe
+G:\FILIPE\CFLYFF\Meteor\Meteor\obj\Debug\Meteor.pdb

@@ -1,0 +1,22 @@
+skills_num = readInt(ar)
+for i = 1, skills_num do
+      local skill = {}
+      local skillsn = LAr:ReadInt(ar)
+      local start_time = LAr:ReadDword(ar)
+      skill.m_skill = skillsn
+      skill.m_use_time = 0
+      skill.m_start_time = 0
+      skill.m_cooltime_reduce = 0
+      skill.m_casting_reduce = 0
+      skill.m_cooltime = {}
+      skill.m_cooltime[1] = {}
+      skill.m_cooltime[1][1] = 0
+      skill.m_cooltime[1][2] = 0
+      skill.m_cooltime[2] = {}
+      skill.m_cooltime[2][1] = 0
+      skill.m_cooltime[2][2] = 0
+      skill.m_switch = false
+      skill.m_tip_sn = self:get_job_skills_tip_sn(skillsn)
+      self.m_job_skill[skillsn] = skill
+      self.m_skill_action_time[skillsn] = start_time
+    end

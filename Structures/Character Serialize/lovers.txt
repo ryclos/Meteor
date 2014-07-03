@@ -1,0 +1,19 @@
+/* Lovers */
+
+[int] lovers_count
+for (i = 0; i < lovers_count; i++)
+	add int -> player id
+	add string -> player name
+	add int -> date (timestamp ???)
+end
+
+=== Lua ===
+for idx = 1, lovers_num do
+      local item = {}
+      item.playerid = LAr:ReadDword(ar)
+      item.name = LAr:ReadString(ar)
+      item.lover_date = LAr:ReadDword(ar)
+      self.m_lover_intimacy = LAr:ReadInt(ar)
+      self:set_lovers_lover_item(item.playerid, item)
+end
+===========

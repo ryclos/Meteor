@@ -1,0 +1,64 @@
+/* Friends */
+
+[int] my_state
+[int] favor_value
+[int] flower_count
+for (i = 0; i < flower_count; i++)
+	id = readInt32()
+	get_flower_list[id] = get_flower_list[id] or 0 // ???
+	get_flower_list[id] = get_flower_list[id] + 1 // ???
+end
+
+=== Lua ===
+
+for i = 1, flower_count do
+    local id = LAr:ReadInt(ar)
+    self.m_get_flower_list[id] = self.m_get_flower_list[id] or 0 // ???
+    self.m_get_flower_list[id] = self.m_get_flower_list[id] + 1 // ???
+end
+
+===========
+
+[int] friend_count
+for (i = 0; i < friend_count; i++)
+	serialize(friends[i])
+end
+
+=== Lua ===
+
+for i = 1, friend_count do
+    local new_friend = friend_member_t.new()
+    new_friend:serialize(ar)
+    self:add_friend(new_friend.m_player_id, new_friend.m_state, new_friend.m_sex, new_friend.m_job, new_friend.m_level, new_friend.m_name, new_friend.m_class, new_friend.m_close_points, new_friend.m_issf)
+end
+
+===========
+
+[int] black_list_count
+for (int i = 0; i < black_list_count; i++)
+	add int -> player id
+	add string -> player name
+end
+
+=== Lua ===
+
+for i = 1, black_count do
+    local new_friend = friend_member_t.new()
+    new_friend.m_player_id = LAr:ReadInt(ar)
+    new_friend.m_name = LAr:ReadString(ar)
+    self:add_blacklist(new_friend.m_player_id, new_friend.m_name)
+end
+
+===========
+
+[int] murderer_list
+
+=== Lua ===
+
+for i = 1, murderer_count do
+    local new_friend = friend_member_t.new()
+    new_friend:serialize(ar)
+    self:add_murdererlist(new_friend.m_player_id, new_friend.m_name, new_friend.m_state, new_friend.m_sex, new_friend.m_job, new_friend.m_level, new_friend.m_issf)
+end
+
+===========

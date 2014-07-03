@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FFA5ED95-F8BE-4272-BF1E-1B50B42717B5}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Meteor</RootNamespace>
+    <AssemblyName>Meteor</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <PublishUrl>publier\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Binary\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>1</WarningLevel>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Binary\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>main_ico.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Divine|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\Binary\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <WarningLevel>1</WarningLevel>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Shyro|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Shyro\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <WarningLevel>1</WarningLevel>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FFEncryptionLibrary, Version=0.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Visual Studio 2012\Projects\Meteor\Meteor\References\FFEncryptionLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="lua51, Version=0.0.0.0, Culture=neutral, PublicKeyToken=1e1fb15b02227b8a, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Binary\lua51.dll</HintPath>
+    </Reference>
+    <Reference Include="LuaInterface, Version=2.0.0.16708, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Binary\LuaInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>References\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IO\Hash.cs" />
+    <Compile Include="IO\Log.cs" />
+    <Compile Include="IO\MySQL.cs" />
+    <Compile Include="IO\ReadWriteMutex.cs" />
+    <Compile Include="Network\BitWriter.cs" />
+    <Compile Include="Network\DataPacket.cs" />
+    <Compile Include="Network\Packet.cs" />
+    <Compile Include="Network\PacketBase.cs" />
+    <Compile Include="Network\Snapshot.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Source\Client\Client.cs" />
+    <Compile Include="Source\Client\IncomingPackets.cs" />
+    <Compile Include="Source\Data\Configuration.cs" />
+    <Compile Include="Source\Data\DataLoader.cs" />
+    <Compile Include="Source\Data\Defines\Define.cs" />
+    <Compile Include="Source\Data\Defines\Error.cs" />
+    <Compile Include="Source\Data\Extention.cs" />
+    <Compile Include="Source\Data\Headers.cs" />
+    <Compile Include="Source\Data\Query.cs" />
+    <Compile Include="Source\Data\Utilities\MersenneTwister.cs" />
+    <Compile Include="Source\Server.cs" />
+    <Compile Include="Source\ServerClientManager.cs" />
+    <Compile Include="Source\Structures\Attributes.cs" />
+    <Compile Include="Source\Structures\Item.cs" />
+    <Compile Include="Source\Structures\LoginUser.cs" />
+    <Compile Include="Source\Structures\Character.cs" />
+    <Compile Include="Source\Structures\Position.cs" />
+    <Compile Include="Source\Structures\Structures.cs" />
+    <Compile Include="Source\Systems\Character\Character.cs" />
+    <Compile Include="Source\Systems\Character\CharacterPackets.cs" />
+    <Compile Include="Source\Systems\World\Commands\Commands.cs" />
+    <Compile Include="Source\Systems\Helper.cs" />
+    <Compile Include="Source\Systems\Login\Login.cs" />
+    <Compile Include="Source\Systems\Login\LoginPackets.cs" />
+    <Compile Include="Source\Structures\ClosetItem.cs" />
+    <Compile Include="Source\Systems\World\Player\Inventory.cs" />
+    <Compile Include="Source\Systems\World\Player\Player.cs" />
+    <Compile Include="Source\Systems\World\Player\PlayerPackets.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="main_ico.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 et x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

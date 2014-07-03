@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <StartWorkingDirectory>C:\Users\Filipe\Documents\Meteor\Binary\</StartWorkingDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Divine|AnyCPU'">
+    <StartWorkingDirectory>E:\Mes documents\Visual Studio 2013\Projects\cFlyffEmu\Binary</StartWorkingDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Shyro|AnyCPU'">
+    <StartWorkingDirectory>C:\Users\Filipe\Documents\Meteor\Binary\</StartWorkingDirectory>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PublishUrlHistory>publier\</PublishUrlHistory>
+    <InstallUrlHistory />
+    <SupportUrlHistory />
+    <UpdateUrlHistory />
+    <BootstrapperUrlHistory />
+    <ErrorReportUrlHistory />
+    <FallbackCulture>fr-FR</FallbackCulture>
+    <VerifyUploadedFiles>false</VerifyUploadedFiles>
+  </PropertyGroup>
+</Project>

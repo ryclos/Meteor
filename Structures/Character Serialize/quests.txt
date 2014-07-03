@@ -1,0 +1,40 @@
+/* Quest in progress */
+
+[int] quest count
+for (i = 0; i < quest_count; i++)
+	serialize quest
+end
+
+Lua :
+
+for i = 1, nSize do
+        local quest = quest_t:new()
+        quest:serialize(ar)
+        self.m_quest_list[quest.id] = quest
+end
+
+/* Quest finished */
+
+[int] quest_count
+for (i = 0; i < quest_count; i++)
+	quest[i] = true // for finish
+end
+
+Lua :
+
+for i = 1, nSize do
+        self.m_complete_quest[LAr:ReadDword(ar)] = true
+end
+
+/* Repeat quests */
+
+[int] quest_count
+for (i = 0; i < quest_count; i++)
+	
+end
+
+Lua :
+
+for i = 1, nSize do
+        self.m_repeat_quest[LAr:ReadDword(ar)] = LAr:ReadWord(ar)
+end

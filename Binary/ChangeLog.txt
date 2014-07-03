@@ -1,0 +1,27 @@
+METEOR EMULATOR (BASED ON uXinEmu EMULATOR FROM LESDERID)
+
+Version 1.0 | Date : 06/02/2014
+----------------------------------------------------------------
+[IO]
+- MySQL
+- Log system
+
+[Network]
+- Dynamic Read and Write packets
+
+[Emulator]
+- Loading server configuration
+- Connecting to MySQL database
+- Client manager
+- Packet Handler
+- Login System
+- Character Manager System
+	- Create Character
+	- Delete Character
+	- Resume Character
+- Game
+	- Join world
+	- Player movement (In progress...)
+	- Inventory Management (In progress...)
+
+----------------------------------------------------------------
