@@ -51,7 +51,7 @@ namespace Meteor.Source
                 case Header.MOVEITEM: this.OnMoveItem(dp); break;
 
                 /* Default */
-                default: Log.Write(LogType.Debug, "Unknow packet {0}", _code); break;
+                default: this.HandleUnknowPackets(_code); break;
             }
         }
 
@@ -70,6 +70,22 @@ namespace Meteor.Source
                 case StateMessage.SYS_SET_STATE: this.OnSetPlayerState(_stateType, dp); break;
                 case StateMessage.SYS_DEL_STATE: this.OnResetPlayerState(_stateType, dp); break;
                 default: Log.Write(LogType.Debug, "Unknow StateMessage packet : {0}", _stateMessage); break;
+            }
+        }
+
+        /// <summary>
+        /// Handle unknow messages
+        /// </summary>
+        /// <param name="dp"></param>
+        public void HandleUnknowPackets(Header code)
+        {
+            if (Enum.IsDefined(typeof(Header), code) == true)
+            {
+                Log.Write(LogType.Debug, "Unimplemented packet {0}", code);
+            }
+            else
+            {
+                Log.Write(LogType.Debug, "Unknow packet {0}", code);
             }
         }
     }

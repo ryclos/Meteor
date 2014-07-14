@@ -1,0 +1,10 @@
+*.suo
+Binary/Data/gameres/
+Binary/logs/
+Binary/*.exe
+Binary/Meteor.exe.config
+Binary/Meteor.pdb
+Binary/Meteor.vshost.exe.config
+Binary/Meteor.vshost.exe.manifest
+Meteor/App.config
+Meteor/obj/

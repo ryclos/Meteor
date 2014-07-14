@@ -90,7 +90,7 @@ namespace Meteor.Source
 
         public void OnResetPlayerState(StateType type, DataPacket dp)
         {
-            switch(type)
+            switch (type)
             {
                 case StateType.STATE_MOTION: break; //To do manage
             }

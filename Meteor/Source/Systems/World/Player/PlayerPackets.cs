@@ -17,7 +17,7 @@ namespace Meteor.Source
     public partial class Client
     {
         /// <summary>
-        /// Packet envoyé au client pour indiquer qu'une objet n'est plus visible
+        /// Remove an object
         /// </summary>
         /// <param name="objid">ID Unique de l'objet</param>
         public void SendRemoveObject(UInt32 objid)
@@ -28,12 +28,12 @@ namespace Meteor.Source
             this.Send(_snap);
         }
 
-        public void SendSetValue(uint OBJID, ushort Attrib, Int32 val)
+        public void SendSetValue(UInt32 objId, UInt16 atrib, Int32 val)
         {
             Snapshot _snap = new Snapshot();
             _snap.StartSnapshot(SnapshotType.SET_VAL);
-            _snap.Add<UInt32>(OBJID);
-            _snap.Add<UInt16>(Attrib);
+            _snap.Add<UInt32>(objId);
+            _snap.Add<UInt16>(atrib);
             _snap.Add<Int32>(val);
             Send(_snap);
         }

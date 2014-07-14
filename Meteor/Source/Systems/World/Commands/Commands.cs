@@ -14,12 +14,19 @@ namespace Meteor.Source
             GENERAL = 1, RESPECTOR = 2, HIGHLEVEL = 3, GAMEMASTER = 4, OPERATOR = 5, SECURITY = 6, ADMINISTRATOR = 7
         }
 
+        /// <summary>
+        /// On chat
+        /// </summary>
+        /// <param name="dp"></param>
         private void OnChat(DataPacket dp)
         {
             String _text = dp.Read<String>();
             String[] _chatCommand = _text.Split(new Char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
             if (_chatCommand.Length == 0)
+            {
                 return;
+            }
             if (_chatCommand[0].Trim().StartsWith("\0.") == true)
             {
                 if (this.Player.Account.Authority >= (Int32)Authority.GAMEMASTER)
@@ -37,18 +44,25 @@ namespace Meteor.Source
             }
         }
 
+        /// <summary>
+        /// GM commands
+        /// </summary>
+        /// <param name="dp"></param>
         private void OnGmCommand(DataPacket dp)
         {
             String command = dp.Read<String>();
             Log.Write(LogType.Debug, command);
             string[] c = command.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            if (c.Length == 0) 
+
+            if (c.Length == 0)
+            {
                 return;
+            }
             if (this.Player.Account.Authority >= (int)Authority.GAMEMASTER)
             {
                 switch (c[0].ToLower())
                 {
-                    case "createitem": OnCreateItem(c); break;
+                    case "createitem": this.OnCreateItem(c); break;
                     default: Log.Write(LogType.Error, "Unknow GM Command '{0}'", command); break;
                 }
             }

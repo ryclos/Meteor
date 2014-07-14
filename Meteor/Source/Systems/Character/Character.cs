@@ -101,8 +101,8 @@ namespace Meteor.Source
                 _character.Attributes[Define.SPI] = 15;
 
                 // TODO: Find a way to calculate the HP and MP max with level and Stamina
-                _character.Attributes[Define.HP] = 100;
-                _character.Attributes[Define.MP] = 100;
+                _character.Attributes[Define.HP] = 397; // base HP
+                _character.Attributes[Define.MP] = 254; // Base MP
 
                 for (Int32 i = 0; i < _clothList.Length; i++)
                 {
