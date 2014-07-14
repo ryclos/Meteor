@@ -19,9 +19,8 @@ Credits for Meteor :
 
 - ShyroFR (developer)
 
--------
-
 Informations:
+-------
 
 Meteor is developed in C# with Visual Studio 2012.
 
@@ -29,9 +28,8 @@ Database : MySQL
 
 App type : Console
 
--------
-
 Install instructions:
+-------
 
 1) Install the database (meteor.sql)
 
@@ -45,4 +43,15 @@ Install instructions:
 
 I'll post more tutorials later... :)
 
+Todo list
 -------
+
+- Map system (In progress)
+- Player timers + real moves
+- Inventory
+
+Utils software list
+-------
+
+- CFlyFF traductor
+- Wdf Editor
