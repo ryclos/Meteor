@@ -88,6 +88,11 @@ namespace Meteor.Source
             }
         }
 
+        /// <summary>
+        /// Reset player state
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="dp"></param>
         public void OnResetPlayerState(StateType type, DataPacket dp)
         {
             switch (type)

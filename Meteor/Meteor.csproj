@@ -124,22 +124,23 @@
     <Compile Include="Source\Data\Utilities\MersenneTwister.cs" />
     <Compile Include="Source\Server.cs" />
     <Compile Include="Source\ServerClientManager.cs" />
+    <Compile Include="Source\Servers\World\Packets\Player\InventoryPackets.cs" />
     <Compile Include="Source\Structures\Attributes.cs" />
     <Compile Include="Source\Structures\Item.cs" />
     <Compile Include="Source\Structures\LoginUser.cs" />
     <Compile Include="Source\Structures\Character.cs" />
     <Compile Include="Source\Structures\Position.cs" />
     <Compile Include="Source\Structures\Structures.cs" />
-    <Compile Include="Source\Systems\Character\Character.cs" />
-    <Compile Include="Source\Systems\Character\CharacterPackets.cs" />
-    <Compile Include="Source\Systems\World\Commands\Commands.cs" />
-    <Compile Include="Source\Systems\Helper.cs" />
-    <Compile Include="Source\Systems\Login\Login.cs" />
-    <Compile Include="Source\Systems\Login\LoginPackets.cs" />
+    <Compile Include="Source\Servers\Character\Character.cs" />
+    <Compile Include="Source\Servers\Character\CharacterPackets.cs" />
+    <Compile Include="Source\Servers\World\Commands\Commands.cs" />
+    <Compile Include="Source\Servers\Helper.cs" />
+    <Compile Include="Source\Servers\Login\Login.cs" />
+    <Compile Include="Source\Servers\Login\LoginPackets.cs" />
     <Compile Include="Source\Structures\ClosetItem.cs" />
-    <Compile Include="Source\Systems\World\Player\Inventory.cs" />
-    <Compile Include="Source\Systems\World\Player\Player.cs" />
-    <Compile Include="Source\Systems\World\Player\PlayerPackets.cs" />
+    <Compile Include="Source\Servers\World\Systems\Player\Inventory.cs" />
+    <Compile Include="Source\Servers\World\Systems\Player\Player.cs" />
+    <Compile Include="Source\Servers\World\Systems\Player\PlayerPackets.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

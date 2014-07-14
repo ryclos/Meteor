@@ -13,9 +13,9 @@ using System.Text;
  *
  */
 
-namespace Meteor.Source
+namespace Meteor.Source.World
 {
-    public class Inventory
+    public partial class Inventory
     {
         #region FIELDS
 
@@ -158,16 +158,7 @@ namespace Meteor.Source
             item.Insert();
             this.Slots[item.Slot] = true;
             this.Items.Add(item);
-            // Send packet
-            Snapshot _snapshot = new Snapshot();
-            _snapshot.StartSnapshot(SnapshotType.CREATEITEM);
-            _snapshot.Add<Int32>((Int32)this.Owner.ObjectId);
-            _snapshot.Add<Byte>(0);
-            item.Serialize(_snapshot);
-            _snapshot.Add<Byte>(1);
-            _snapshot.Add<Byte>(item.Slot);
-            _snapshot.Add<Int16>((Int16)item.Quantity);
-            this.Owner.Client.Send(_snapshot);
+            this.SendCreateItem(item);
         }
 
         /// <summary>
