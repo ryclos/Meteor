@@ -28,16 +28,25 @@ namespace Meteor.Source
             this.Send(_snap);
         }
 
-        public void SendSetValue(UInt32 objId, UInt16 atrib, Int32 val)
+        /// <summary>
+        /// Send an Attribute value
+        /// </summary>
+        /// <param name="objectId">Player Object Id</param>
+        /// <param name="attribute">Attribute</param>
+        /// <param name="value">Value</param>
+        public void SendAttributeValue(UInt32 objectId, UInt16 attribute, Int32 value)
         {
             Snapshot _snap = new Snapshot();
             _snap.StartSnapshot(SnapshotType.SET_VAL);
-            _snap.Add<UInt32>(objId);
-            _snap.Add<UInt16>(atrib);
-            _snap.Add<Int32>(val);
-            Send(_snap);
+            _snap.Add<UInt32>(objectId);
+            _snap.Add<UInt16>(attribute);
+            _snap.Add<Int32>(value);
+            this.Send(_snap);
         }
 
+        /// <summary>
+        /// Send Player Data
+        /// </summary>
         public void SendPlayerData()
         {
             Snapshot _snap = new Snapshot();
@@ -53,7 +62,7 @@ namespace Meteor.Source
                     _snap.Add<Int32>(_value[i]);
                 }
             }
-            Send(_snap); 
+            this.Send(_snap); 
         }
     }
 }

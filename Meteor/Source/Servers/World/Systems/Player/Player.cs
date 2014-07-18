@@ -101,18 +101,5 @@ namespace Meteor.Source
             }
         }
 
-        /// <summary>
-        /// Moving item
-        /// </summary>
-        /// <param name="dp">Data incoming packet</param>
-        public void OnMoveItem(DataPacket dp)
-        {
-            Byte _bag = dp.Read<Byte>();
-            Byte _source = dp.Read<Byte>();
-            Byte _dest = dp.Read<Byte>();
-
-            Log.Write(LogType.Debug, "MoveItem => {0} to {1}", _source, _dest);
-        }
-
     }
 }

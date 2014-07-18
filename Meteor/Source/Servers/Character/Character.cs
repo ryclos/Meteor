@@ -283,7 +283,7 @@ namespace Meteor.Source
             this.Player.Serialize(_snapshot, true);
             this.Send(_snapshot);
 
-            this.SendPlayerData();
+            //this.SendPlayerData();
         }
     }
 }

@@ -140,7 +140,7 @@
     <Compile Include="Source\Structures\ClosetItem.cs" />
     <Compile Include="Source\Servers\World\Systems\Player\Inventory.cs" />
     <Compile Include="Source\Servers\World\Systems\Player\Player.cs" />
-    <Compile Include="Source\Servers\World\Systems\Player\PlayerPackets.cs" />
+    <Compile Include="Source\Servers\World\Packets\Player\PlayerPackets.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -171,6 +171,9 @@
       <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Source\Servers\World\Systems\Map\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

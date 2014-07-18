@@ -14,7 +14,7 @@ using System.Text;
  * Notes:
  * -------------------------------------------------------*/
 
-namespace Meteor.Source.World
+namespace Meteor.Source
 {
     public partial class Inventory
     {
