@@ -30,6 +30,8 @@ namespace Meteor.Source
 
         public static DataLoader Loader;
 
+        public static MapManager Maps;
+
         #endregion
 
         #region CONSTRUCTORS
@@ -44,6 +46,7 @@ namespace Meteor.Source
             this.ListenSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             this.Clients = new List<Client>();
             Loader = new DataLoader();
+            Maps = new MapManager();
         }
 
         /// <summary>
@@ -91,6 +94,9 @@ namespace Meteor.Source
                     throw new Exception("Loading resources failed.");
                 }
 
+                // Load maps
+                Maps.Add(1, "HopeWorld");
+
                 // Initialize socket
                 Log.Write(LogType.Info, "Initialize socket listener...");
                 this.ListenSocket.Bind(new IPEndPoint(IPAddress.Any, Configuration.Get<Int32>("Port")));
@@ -131,6 +137,7 @@ namespace Meteor.Source
             {
                 this.UpdateAcceptor();
                 this.UpdateClients();
+                Maps.Update();
             }
             this.Save();
         }

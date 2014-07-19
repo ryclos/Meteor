@@ -64,12 +64,19 @@ namespace Meteor.Source
             return Math.Abs(Math.Sqrt(Math.Pow(this.X - posTo.X, 2) + Math.Pow(this.Y - posTo.Y, 2) + Math.Pow(this.Z - posTo.Z, 2)));
         }
 
-        public bool IsInRange(Position posTo, int range)
+        public Boolean IsInRange(Position posTo, int range)
         {
             return DistanceTo(posTo) <= range;
         }
 
-        public bool IsZero()
+        public Boolean IsInCircle(Position other, Single radius)
+        {
+            Single _distX = this.X - other.X;
+            Single _distZ = this.Z - other.Z;
+            return (_distX * _distX + _distZ * _distZ) <= radius * radius;
+        }
+
+        public Boolean IsZero()
         {
             return X == 0 && Y == 0 && Z == 0;
         }
@@ -87,7 +94,7 @@ namespace Meteor.Source
 
         public String ToString()
         {
-            return string.Format("{0} {1} {2}", this.X, this.Y, this.Z);
+            return string.Format("x:{0} y:{1} z:{2}", this.X, this.Y, this.Z);
         }
 
         #endregion

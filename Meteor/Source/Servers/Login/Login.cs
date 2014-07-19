@@ -109,6 +109,10 @@ namespace Meteor.Source
             if (this.Player != null)
             {
                 this.Player.Save();
+                if (this.Player.Spawned == true)
+                {
+                    Server.Maps[this.Player.MapId].Delete<Character>(this.Player);
+                }
                 this.Player = null;
             }
             this.Disconnect();

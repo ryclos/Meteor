@@ -18,33 +18,7 @@ using System.Text;
 
 namespace Meteor.Source
 {
-    public enum ObjectType : int
-    {
-        OT_OBJ = 1,
-        OT_STATIC = 2,
-        OT_CTRL = 4,
-        OT_COMMON = 8,
-        OT_ITEM = 16,
-        OT_SFX = 32,
-        OT_SHIP = 64,
-        OT_SPRITE = 128,
-        OT_PLAYER = 256,
-        OT_CLIENT = OT_OBJ | OT_CTRL | OT_SPRITE | OT_PLAYER,
-        OT_MONSTER = 512,
-        OT_MOB = OT_OBJ | OT_CTRL | OT_SPRITE | OT_MONSTER,
-        OT_NPC = 1024,
-        OT_NPC2 = OT_OBJ | OT_CTRL | OT_SPRITE | OT_MONSTER | OT_NPC,
-        OT_GUARD = 2048,
-        OT_PET = 4096,
-        OT_REGION = 8192,
-        OT_COMMON_SFX = 16384,
-        OT_SHOP = 32768,
-        OT_BODYGUARD = 65536,
-        OT_TRAINBALL = 131072,
-        MAX_OBJTYPE = 18
-    }
-
-    public class Character
+    public class Character : Mover
     {
         #region FIELDS
 
@@ -59,25 +33,12 @@ namespace Meteor.Source
         public Int64 Exp { get; set; }
         public Int32 Gold { get; set; }
         public Gender Gender { get; set; }
-        public String Name { get; set; }
 
         /* Map */
         public UInt32 ObjectId { get; set; }
         public Int32 MapId { get; set; }
         public Position Position { get; set; }
         public Single Angle { get; set; }
-
-        /* Attr */
-        public Int32 HP { get; set; }
-        public Int32 MP { get; set; }
-        public Int32 Strength { get; set; }
-        public Int32 Stamina { get; set; }
-        public Int32 Dexterity { get; set; }
-        public Int32 Inteligence { get; set; }
-        public Int32 Spirit { get; set; }
-
-        /* Attributes */
-        public Attributes Attributes { get; set; }
 
         /* Apparence */
         public UInt32 ModelId { get; set; }
@@ -101,15 +62,11 @@ namespace Meteor.Source
         #region CONSTRUCTORS
 
         /// <summary>
-        /// Initialize an empty Character
-        /// </summary>
-        public Character() { }
-
-        /// <summary>
         /// Initialize a new Character with the current client pointer
         /// </summary>
         /// <param name="c">Client pointer</param>
         public Character(Client c)
+            : base(ObjectType.OT_CLIENT)
         {
             this.Initialize(c);
         }
@@ -120,6 +77,7 @@ namespace Meteor.Source
         /// <param name="set">SQL Result set</param>
         /// <param name="c">Client pointer</param>
         public Character(ResultSet set, Client c)
+            : base(ObjectType.OT_CLIENT)
         {
             this.Initialize(c);
             this.Initialize(set);
@@ -136,15 +94,7 @@ namespace Meteor.Source
         public void Initialize(Client c)
         {
             this.Client = c;
-            this.Attributes = new Attributes();
             this.Inventory = new Inventory(this);
-            //this.BlackList = new List<UInt32>();
-            //this.Spawns = new List<FObject>();
-            //this.Taskbarre = new TaskBar();
-            //this.Taskbarre.DBLoadTaskBar(this.Id);
-            //this.HotKey = new HotKey[47];
-            //LoadHotKey();
-            //this.m_data[Define.MOVE_SPEED] = 6000;
         }
 
         /// <summary>
@@ -232,6 +182,14 @@ namespace Meteor.Source
         }
 
         /// <summary>
+        /// Update character
+        /// </summary>
+        public override void Update()
+        {
+            base.Update();
+        }
+
+        /// <summary>
         /// Serialize the character into a Snapshot packet (for join world)
         /// </summary>
         /// <param name="packet">Snapshot packet</param>
@@ -261,8 +219,10 @@ namespace Meteor.Source
                                   {"domesticate", 0x77777796}
 			                  };
 
-            packet.Add<UInt32>((UInt32)ObjectType.OT_CLIENT); //Object Type  OT_PLAYER = 256 + sprite 128 + CTRL = 4 + OBJ = 1 = 389 ?
-            packet.Add<UInt32>(this.ObjectId); // Object Id
+            base.Serialize(packet);
+            //packet.Add<UInt32>((UInt32)ObjectType.OT_CLIENT); //Object Type  OT_PLAYER = 256 + sprite 128 + CTRL = 4 + OBJ = 1 = 389 ?
+            //packet.Add<UInt32>(this.ObjectId); // Object Id
+
             packet.Add<Int32>(this.Id); // Character Id   self.m_player_id,
             packet.Add<Byte>((Byte)this.Gender); //self.m_sex,
             packet.Add<Int32>(this.Job); //self.m_job,
@@ -584,5 +544,4 @@ namespace Meteor.Source
         Male = 0,
         Female = 1,
     }
-
 }

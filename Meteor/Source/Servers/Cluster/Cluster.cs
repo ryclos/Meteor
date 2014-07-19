@@ -240,12 +240,11 @@ namespace Meteor.Source
                 this.Player.Inventory.LoadInventory();
                 this.Player.Inventory.LoadCloset();
 
-                this.Player.ObjectId = 15;
-
                 SendJoinRight();
                 SendSpawnSelf();
-                
-                // Add to world (for visibility)
+
+                this.Player.Spawned = true;
+                Server.Maps[this.Player.MapId].Add<Character>(this.Player);
             }
             else
             {
@@ -266,11 +265,11 @@ namespace Meteor.Source
             this.Send(_packet);
         }
 
-        public void SendSpawnToOthers(Client c)
+        public void SendSpawnToOthers(Character c)
         {
             Snapshot _snapShotNearPlayers = new Snapshot();
-            Player.Serialize(_snapShotNearPlayers);            
-            c.Send(_snapShotNearPlayers);
+            c.Serialize(_snapShotNearPlayers);       
+            this.Send(_snapShotNearPlayers);
         }
 
         public void SendSpawnSelf()
@@ -283,7 +282,7 @@ namespace Meteor.Source
             this.Player.Serialize(_snapshot, true);
             this.Send(_snapshot);
 
-            //this.SendPlayerData();
+            this.SendPlayerData();
         }
     }
 }

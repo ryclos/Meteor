@@ -21,6 +21,7 @@ Version 1.0 | Date : 06/02/2014
 	- Resume Character
 - Game
 	- Join world
+	- Player visibility with other players
 	- Player movement (In progress...)
 	- Inventory Management (In progress...)
 

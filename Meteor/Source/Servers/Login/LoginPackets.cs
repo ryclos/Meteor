@@ -27,6 +27,7 @@ namespace Meteor.Source
             _packet.Add<Boolean>(false);
             this.Send(_packet);
         }
+
         /// <summary>
         /// Send that there is a version error between version send by client and version in server configuration
         /// </summary>

@@ -125,14 +125,18 @@
     <Compile Include="Source\Server.cs" />
     <Compile Include="Source\ServerClientManager.cs" />
     <Compile Include="Source\Servers\World\Packets\Player\InventoryPackets.cs" />
+    <Compile Include="Source\Servers\World\Systems\Map\Map.cs" />
+    <Compile Include="Source\Servers\World\Systems\Map\MapManager.cs" />
     <Compile Include="Source\Structures\Attributes.cs" />
     <Compile Include="Source\Structures\Item.cs" />
     <Compile Include="Source\Structures\LoginUser.cs" />
-    <Compile Include="Source\Structures\Character.cs" />
+    <Compile Include="Source\Structures\Mover\Character.cs" />
+    <Compile Include="Source\Structures\Mover\AObject.cs" />
+    <Compile Include="Source\Structures\Mover\Mover.cs" />
     <Compile Include="Source\Structures\Position.cs" />
     <Compile Include="Source\Structures\Structures.cs" />
-    <Compile Include="Source\Servers\Character\Character.cs" />
-    <Compile Include="Source\Servers\Character\CharacterPackets.cs" />
+    <Compile Include="Source\Servers\Cluster\Cluster.cs" />
+    <Compile Include="Source\Servers\Cluster\ClusterPackets.cs" />
     <Compile Include="Source\Servers\World\Commands\Commands.cs" />
     <Compile Include="Source\Servers\Helper.cs" />
     <Compile Include="Source\Servers\Login\Login.cs" />
@@ -172,9 +176,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Source\Servers\World\Systems\Map\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

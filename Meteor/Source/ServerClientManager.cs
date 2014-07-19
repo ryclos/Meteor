@@ -34,10 +34,21 @@ namespace Meteor.Source
         /// <param name="c">Client to delete</param>
         internal void DeleteClient(Client c)
         {
+            c.CloseSocket();
             this.Clients.Remove(c);
-            c.Socket.Close();
-            c.Socket.Dispose();
             c = null;
+        }
+
+        /// <summary>
+        /// Delete all clients of the server
+        /// </summary>
+        internal void RemoveAllClient()
+        {
+            foreach (Client c in this.Clients)
+            {
+                c.CloseSocket();
+            }
+            this.Clients.Clear();
         }
 
         /// <summary>
@@ -111,14 +122,7 @@ namespace Meteor.Source
                 this.ReadyClients.RemoveAt(0);
             }
         }
-        /// <summary>
-        /// Fonction qui va déconnecter tous les clients
-        /// </summary>
-        internal void RemoveAllClient()
-        {
-            for (int i=0;i< this.Clients.Count-1;i--)
-                DeleteClient(Clients[i]);
-        }
+
         #endregion
     }
 }

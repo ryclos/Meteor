@@ -46,7 +46,6 @@ I'll post more tutorials later... :)
 Todo list
 -------
 
-- Map system (In progress)
 - Player timers + real moves
 - Inventory
 

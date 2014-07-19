@@ -48,6 +48,9 @@ namespace Meteor.Source
         /* Game informations */
         public Character Player { get; set; }
 
+        /// <summary>
+        /// Near client list
+        /// </summary>
         public IEnumerable<Client> NearClients
         {
             get
@@ -99,6 +102,7 @@ namespace Meteor.Source
         /// </summary>
         public void Disconnect()
         {
+            Log.Write(LogType.Info, "{0} disconnected", this.User.Username);
             this.Server.DeleteClient(this);
         }
 
@@ -145,6 +149,15 @@ namespace Meteor.Source
             {
                 _client.Send(pak);
             }
+        }
+
+        /// <summary>
+        /// Close and dispose the socket
+        /// </summary>
+        public void CloseSocket()
+        {
+            this.Socket.Close();
+            this.Socket.Dispose();
         }
 
         #endregion

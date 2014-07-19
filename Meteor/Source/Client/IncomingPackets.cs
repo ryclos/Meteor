@@ -33,10 +33,6 @@ namespace Meteor.Source
                 case Header.PING: this.OnPing(dp); break;
                 case Header.LEAVE: this.OnLeave(dp); break;
 
-                /* Chat */
-                case Header.NORMALCHAT: this.OnChat(dp); break;
-                case Header.GMCMD: this.OnGmCommand(dp); break;
-
                 /* Character */
                 case Header.CREATEPLAYER: this.OnCreateCharacter(dp); break;
                 case Header.DELETEPLAYER: this.OnDeleteCharacter(dp); break;
@@ -48,6 +44,11 @@ namespace Meteor.Source
                 case Header.STATE_MSG: this.HandleStatePackets(dp); break;
                 case Header.PLAYERCORR: this.OnPlayerCorrMovement(dp); break;
 
+                /* Chat */
+                case Header.NORMALCHAT: this.OnChat(dp); break;
+                case Header.GMCMD: this.OnGmCommand(dp); break;
+
+                /* Inventory */
                 case Header.MOVEITEM: this.OnMoveItem(dp); break;
 
                 /* Default */

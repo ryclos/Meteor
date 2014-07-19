@@ -101,5 +101,27 @@ namespace Meteor.Source
             }
         }
 
+        /// <summary>
+        /// Spanw an object
+        /// </summary>
+        /// <param name="obj"></param>
+        public void SpawnObject(AObject obj)
+        {
+            this.Player.SpawnedObjects.Add(obj);
+            if (obj is Character)
+            {
+                this.SendSpawnToOthers(obj as Character);
+            }
+        }
+
+        /// <summary>
+        /// Despawn an object
+        /// </summary>
+        /// <param name="obj">Object to despawn</param>
+        public void DespawnObject(AObject obj)
+        {
+            this.Player.SpawnedObjects.Remove(obj);
+            this.SendRemoveObject(obj.ObjectId);
+        }
     }
 }
