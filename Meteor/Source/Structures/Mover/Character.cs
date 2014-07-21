@@ -28,7 +28,6 @@ namespace Meteor.Source
         public Int32 Id { get; set; }
         public Int32 AccountId { get; set; }
         public Int32 Slot { get; set; }
-        public Int32 Level { get; set; }
         public Int32 Job { get; set; }
         public Int64 Exp { get; set; }
         public Int32 Gold { get; set; }
@@ -37,7 +36,7 @@ namespace Meteor.Source
         /* Map */
         public UInt32 ObjectId { get; set; }
         public Int32 MapId { get; set; }
-        public Position Position { get; set; }
+        //public Position Position { get; set; }
         public Single Angle { get; set; }
 
         /* Apparence */
@@ -53,6 +52,21 @@ namespace Meteor.Source
 
         /* Friends */
         public List<UInt32> BlackList { get; set; }
+
+        /* Level */
+        private Int32 _Level;
+        public override int Level
+        {
+            get
+            {
+                return this._Level;
+            }
+            set
+            {
+                // Manage experience here
+                this._Level = value;
+            }
+        }
 
         /* Visibilité */
         //public List<FObject> Spawns { get; set; }
@@ -110,6 +124,7 @@ namespace Meteor.Source
             this.Id = set.Read<Int32>("Id");
             this.Slot = set.Read<Int32>("Slot");
             this.Attributes[Define.LV] = set.Read<Int32>("Level");
+            this.Level = this.Attributes[Define.LV];
             this.Job = set.Read<Int32>("Job");
             this.Attributes[Define.EP] = set.Read<Int32>("Exp");
             this.Name = set.Read<String>("Name");
@@ -127,6 +142,7 @@ namespace Meteor.Source
             this.Attributes[Define.INT] = set.Read<Int32>("Inteligence");
             this.Attributes[Define.SPI] = set.Read<Int32>("Spirit");
             this.Attributes[Define.GOLD] = set.Read<Int32>("Gold");
+            this.Attributes[Define.MOVE_SPEED] = 6000;
             this.HairColor = set.Read<Int32>("HairColor");
             this.HairMesh = set.Read<Int32>("HairMesh");
             this.HeadMesh = set.Read<Int32>("HeadMesh");
@@ -264,7 +280,7 @@ namespace Meteor.Source
 				                 {Define.HP, 397}, //HP
 				                 {Define.MP, 254}, //MP
 				                 {Define.GP, 2},
-				                 {Define.LV, this.Attributes[Define.LV]},
+				                 {Define.LV, this.Level},
 				                 {Define.FLV, 1 },
 				                 {Define.VIT, 120},
 				                 {Define.FHP, 450},
@@ -464,7 +480,6 @@ namespace Meteor.Source
             packet.Add<UInt32>(0); //00 00 00 00 (Last Wage Time GM => ?)
 
             /* Equip attr bonus */
-
             packet.Add<Byte>(0x0F); //00 (Equipment Attribute Stone STR Bonus => ?)
             packet.Add<Byte>(0x0F); //00 (Equipment Attribute Stone DEX Bonus => ?)
             packet.Add<Byte>(0x2D); //2D (Equipment Attribute Stone STA Bonus => ?)
@@ -491,7 +506,6 @@ namespace Meteor.Source
                     packet.Add<Int32>(0);
                 }
             }
-
             packet.Add<Int32>(_checkValues["closet"]);
 
             /* Vessel */

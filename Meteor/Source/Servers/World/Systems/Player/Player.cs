@@ -68,10 +68,10 @@ namespace Meteor.Source
             Int32 _y = dp.Read<Int32>();
             Int32 _z = dp.Read<Int32>();
 
-            //this.Player.Destination.X = _x / 1000f;
-            //this.Player.Destination.Y = _y / 1000f;
-            //this.Player.Destination.Z = _z / 1000f;
-            //this.Player.SendStateMessage(this.Player.ObjectId, false, (short)StateType.STATE_MOVE_TO, 0xFFFFFFFF, _x, _y, _z, 0xFF);        
+            this.Player.Destination.X = _x / 1000f;
+            this.Player.Destination.Y = _y / 1000f;
+            this.Player.Destination.Z = _z / 1000f;
+            this.Player.SendMoverDestination();    
         }
        
         /// <summary>

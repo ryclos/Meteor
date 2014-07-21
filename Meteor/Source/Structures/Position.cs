@@ -64,11 +64,23 @@ namespace Meteor.Source
             return Math.Abs(Math.Sqrt(Math.Pow(this.X - posTo.X, 2) + Math.Pow(this.Y - posTo.Y, 2) + Math.Pow(this.Z - posTo.Z, 2)));
         }
 
+        /// <summary>
+        /// Check if the position is in range
+        /// </summary>
+        /// <param name="posTo"></param>
+        /// <param name="range"></param>
+        /// <returns></returns>
         public Boolean IsInRange(Position posTo, int range)
         {
             return DistanceTo(posTo) <= range;
         }
 
+        /// <summary>
+        /// Check if this position is the circle
+        /// </summary>
+        /// <param name="other"></param>
+        /// <param name="radius"></param>
+        /// <returns></returns>
         public Boolean IsInCircle(Position other, Single radius)
         {
             Single _distX = this.X - other.X;
@@ -76,6 +88,10 @@ namespace Meteor.Source
             return (_distX * _distX + _distZ * _distZ) <= radius * radius;
         }
 
+        /// <summary>
+        /// Return true if the position is zero, false otherwise
+        /// </summary>
+        /// <returns></returns>
         public Boolean IsZero()
         {
             return X == 0 && Y == 0 && Z == 0;
@@ -90,6 +106,39 @@ namespace Meteor.Source
             writer.Write(this.X);
             writer.Write(this.Y);
             writer.Write(this.Z);
+        }
+
+        /// <summary>
+        /// Copy the current object to another
+        /// </summary>
+        /// <param name="position"></param>
+        public void Copy(ref Position position)
+        {
+            if (position == null)
+            {
+                position = new Position();
+            }
+            position.X = this.X;
+            position.Y = this.Y;
+            position.Z = this.Z;
+            //position. = this.Angle;
+            //position.YAngle = this.YAngle;
+        }
+
+        /// <summary>
+        /// Clones this position
+        /// </summary>
+        /// <returns></returns>
+        public Position Clone()
+        {
+            return new Position()
+            {
+                X = this.X,
+                Y = this.Y,
+                Z = this.Z,
+                //Angle = this.Angle,
+                //YAngle = this.YAngle
+            };
         }
 
         public String ToString()

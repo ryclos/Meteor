@@ -26,6 +26,7 @@ namespace Meteor.Source
             UInt32 _packetSize = dp.Read<UInt32>();
             UInt16 _header = dp.Read<UInt16>();
             Header _code = (Header)_header;
+            Log.Write(LogType.Debug, "Packet recieved: {0}", _code);
             switch (_code)
             {
                 /* Login */

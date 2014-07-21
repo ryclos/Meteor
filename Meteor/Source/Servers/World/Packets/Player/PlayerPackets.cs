@@ -52,6 +52,7 @@ namespace Meteor.Source
             Snapshot _snap = new Snapshot();
             List<UInt32> _key = this.Player.Attributes.Keys;
             List<Int32> _value = this.Player.Attributes.Values;
+
             for (Int32 i = 0; i < this.Player.Attributes.Length; ++i)
             {
                 if (_value[i] != 0)
@@ -62,7 +63,7 @@ namespace Meteor.Source
                     _snap.Add<Int32>(_value[i]);
                 }
             }
-            this.Send(_snap); 
+            this.Send(_snap);
         }
     }
 }

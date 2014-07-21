@@ -51,11 +51,12 @@ namespace Meteor.Source
         /// <summary>
         /// Near client list
         /// </summary>
-        public IEnumerable<Client> NearClients
+        public IEnumerable<Character> NearClients
         {
             get
             {
-                return this.Server.Clients.Where(c => c != this && c.Player != null && c.Player.Position.DistanceTo(this.Player.Position) <= 100);
+                return Server.Maps[this.Player.MapId].Players.Where(c => c != this.Player && c != null && c.Position.DistanceTo(this.Player.Position) <= 100);
+                //return this.Server.Clients.Where(c => c != this && c.Player != null && c.Player.Position.DistanceTo(this.Player.Position) <= 100);
             }
         }
 
@@ -143,11 +144,11 @@ namespace Meteor.Source
         /// Send packet to near clients
         /// </summary>
         /// <param name="pak">Packet to send</param>
-        public void SendToNearPlayers(Packet pak)
+        public void SendToVisiblePlayers(Packet pak)
         {
-            foreach (Client _client in this.NearClients)
+            foreach (Character _character in this.NearClients)
             {
-                _client.Send(pak);
+                _character.Client.Send(pak);
             }
         }
 

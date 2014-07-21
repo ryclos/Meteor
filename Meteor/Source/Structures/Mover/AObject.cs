@@ -24,7 +24,8 @@ namespace Meteor.Source
         public UInt32 ObjectId { get; set; }
         public UInt32 ModelId { get; set; }
         public Int32 MapId { get; set; }
-        public Position Position { get; set; }
+        public Position Position;
+        public Position Destination;
         public Single Angle { get; set; }
         public Boolean Spawned { get; set; }
         public List<AObject> SpawnedObjects { get; set; }
@@ -45,6 +46,8 @@ namespace Meteor.Source
             this.Type = type;
             this.Spawned = false;
             this.SpawnedObjects = new List<AObject>();
+            this.Position = new Position();
+            this.Destination = new Position();
         }
 
         #endregion
@@ -61,7 +64,19 @@ namespace Meteor.Source
             packet.Add<UInt32>(this.ObjectId); // Object Id
         }
 
-        public virtual void Update() { }
+        public abstract void Update();
+
+        /// <summary>
+        /// Send packet to all visible players
+        /// </summary>
+        /// <param name="packet"></param>
+        public void SendToVisiblePlayers(Packet packet)
+        {
+            foreach (Character obj in this.SpawnedObjects)
+            {
+                obj.Client.Send(packet);
+            }
+        }
 
         #endregion
     }

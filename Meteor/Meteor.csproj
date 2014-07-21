@@ -105,6 +105,7 @@
     <Compile Include="IO\Log.cs" />
     <Compile Include="IO\MySQL.cs" />
     <Compile Include="IO\ReadWriteMutex.cs" />
+    <Compile Include="IO\Time.cs" />
     <Compile Include="Network\BitWriter.cs" />
     <Compile Include="Network\DataPacket.cs" />
     <Compile Include="Network\Packet.cs" />
@@ -124,6 +125,7 @@
     <Compile Include="Source\Data\Utilities\MersenneTwister.cs" />
     <Compile Include="Source\Server.cs" />
     <Compile Include="Source\ServerClientManager.cs" />
+    <Compile Include="Source\Servers\World\Packets\Mover\MoverPackets.cs" />
     <Compile Include="Source\Servers\World\Packets\Player\InventoryPackets.cs" />
     <Compile Include="Source\Servers\World\Systems\Map\Map.cs" />
     <Compile Include="Source\Servers\World\Systems\Map\MapManager.cs" />
