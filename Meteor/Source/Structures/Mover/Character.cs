@@ -33,12 +33,6 @@ namespace Meteor.Source
         public Int32 Gold { get; set; }
         public Gender Gender { get; set; }
 
-        /* Map */
-        public UInt32 ObjectId { get; set; }
-        public Int32 MapId { get; set; }
-        //public Position Position { get; set; }
-        public Single Angle { get; set; }
-
         /* Apparence */
         public UInt32 ModelId { get; set; }
         public Int32 HairMesh { get; set; }
@@ -49,9 +43,6 @@ namespace Meteor.Source
 
         /* Inventory */
         public Inventory Inventory { get; set; }
-
-        /* Friends */
-        public List<UInt32> BlackList { get; set; }
 
         /* Level */
         private Int32 _Level;
@@ -67,9 +58,6 @@ namespace Meteor.Source
                 this._Level = value;
             }
         }
-
-        /* Visibilité */
-        //public List<FObject> Spawns { get; set; }
 
         #endregion
 
@@ -130,6 +118,7 @@ namespace Meteor.Source
             this.Name = set.Read<String>("Name");
             this.MapId = set.Read<Int32>("MapId");
             this.Position = new Position(set.Read<Single>("PosX"), set.Read<Single>("PosY"), set.Read<Single>("PosZ"));
+            this.Position.Copy(ref this.Destination);
             this.Gender = gender;
             this.DeletedDate = set.Read<DateTime>("DeletedDate");
             
@@ -236,24 +225,22 @@ namespace Meteor.Source
 			                  };
 
             base.Serialize(packet);
-            //packet.Add<UInt32>((UInt32)ObjectType.OT_CLIENT); //Object Type  OT_PLAYER = 256 + sprite 128 + CTRL = 4 + OBJ = 1 = 389 ?
-            //packet.Add<UInt32>(this.ObjectId); // Object Id
 
             packet.Add<Int32>(this.Id); // Character Id   self.m_player_id,
-            packet.Add<Byte>((Byte)this.Gender); //self.m_sex,
-            packet.Add<Int32>(this.Job); //self.m_job,
-            packet.Add<Int32>((Int32)this.Account.Authority); //self.m_auth, 
-            packet.Add<Int32>(Configuration.Get<Int32>("ServerId")); //self.m_server_id,
+            packet.Add<Byte>((Byte)this.Gender); // Character gender
+            packet.Add<Int32>(this.Job); // Character job
+            packet.Add<Int32>((Int32)this.Account.Authority); // Client authority 
+            packet.Add<Int32>(Configuration.Get<Int32>("ServerId")); // Server Id
             packet.Add<String>(""); // uXinEmu (VIP Bar name ???) self.m_vipbar_name
 
-            packet.Add<UInt32>(this.ModelId); //self.m_index model ?
+            packet.Add<UInt32>(this.ModelId); // Model Id
             packet.Add<UInt32>(0xFFFFFFFF); //link_id
-            packet.Add<String>(this.Name); //m_name
+            packet.Add<String>(this.Name); // Character Name
             packet.Add<Int16>(9); //m_constellation
             packet.Add<Int16>(1); //m_city
-            packet.Add<Byte>((Byte)this.HairMesh); //m_hair_mesh
-            packet.Add<UInt32>((UInt32)this.HairColor); //m_hair_color
-            packet.Add<Byte>((Byte)this.HeadMesh); //m_head_mesh
+            packet.Add<Byte>((Byte)this.HairMesh); // Character Hair Model
+            packet.Add<UInt32>((UInt32)this.HairColor); // Character Hair Color
+            packet.Add<Byte>((Byte)this.HeadMesh); // Character Head Model
             packet.Add<UInt32>(0x7FFFFFFF); //m_option
             packet.Add<UInt32>(0); //m_team_id
             packet.Add<String>(""); // Vendor string
@@ -280,18 +267,18 @@ namespace Meteor.Source
 				                 {Define.HP, 397}, //HP
 				                 {Define.MP, 254}, //MP
 				                 {Define.GP, 2},
-				                 {Define.LV, this.Level},
+				                 {Define.LV, this.Level}, // Character Level
 				                 {Define.FLV, 1 },
 				                 {Define.VIT, 120},
 				                 {Define.FHP, 450},
-				                 {Define.MOVE_SPEED, 6000}, //character level
+				                 {Define.MOVE_SPEED, 6000}, // Character Speed
 				                 
-				                 {Define.STR, this.Attributes[Define.STR] }, //Strength
-				                 {Define.STA, this.Attributes[Define.STA] }, //Stamina
-				                 {Define.INT, this.Attributes[Define.INT] }, //Intelligence
-                                 {Define.FMP, 290 }, //Fly Intelligence
-				                 {Define.DEX, this.Attributes[Define.DEX] }, //Dexterity
-				                 {Define.SPI, this.Attributes[Define.SPI] }, //Spirit				                 
+				                 {Define.STR, this.Attributes[Define.STR] }, // Strength
+				                 {Define.STA, this.Attributes[Define.STA] }, // Stamina
+				                 {Define.INT, this.Attributes[Define.INT] }, // Intelligence
+                                 {Define.FMP, 290 }, // Fly Intelligence
+				                 {Define.DEX, this.Attributes[Define.DEX] }, // Dexterity
+				                 {Define.SPI, this.Attributes[Define.SPI] }, // Spirit				                 
 			                 };
             packet.Add<Int32>(_streamData.Count);
             foreach (var pair in _streamData)
@@ -352,7 +339,7 @@ namespace Meteor.Source
             packet.Add<UInt32>(0); //?? ?? ?? ?? (Vessel Equip Index => ?)
             packet.Add<Boolean>(false); //?? (Vessel Equipped => ?)
 
-            packet.Add<Byte>((byte)(me ? 1 : 0)); //flag
+            packet.Add<Byte>((Byte)(me ? 1 : 0)); //flag
             if (me == false)
             {
                 return;

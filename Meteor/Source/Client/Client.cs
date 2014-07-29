@@ -146,6 +146,7 @@ namespace Meteor.Source
         /// <param name="pak">Packet to send</param>
         public void SendToVisiblePlayers(Packet pak)
         {
+            this.Send(pak);
             foreach (Character _character in this.NearClients)
             {
                 _character.Client.Send(pak);
