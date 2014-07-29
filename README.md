@@ -49,8 +49,9 @@ Todo list
 - Player timers + real moves
 - Inventory
 
-Utils software list
+Tools :
 -------
 
-- CFlyFF traductor
-- Wdf Editor
+CFlyFFAddonsExtractor:
+![Alt Text](http://www.yagoshack.fr/images/cflyffaddo.png)
+Extracts all files from config.wdf and converts them into .lua files
