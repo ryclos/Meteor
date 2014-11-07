@@ -67,7 +67,6 @@ namespace Meteor.Source
             if (typeof(T) == typeof(Character))
             {
                 this.Players.Remove(value as Character);
-                (value as Character).Spawned = false;
                 foreach (Character character in this.Players)
                 {
                     if (character.GetHashCode() != (value as Character).GetHashCode())
@@ -76,6 +75,7 @@ namespace Meteor.Source
                         {
                             character.SpawnedObjects.Remove(value as Character);
                             character.Client.DespawnObject(value as Character);
+                            character.Spawned = false;
                         }
                     }
                 }
