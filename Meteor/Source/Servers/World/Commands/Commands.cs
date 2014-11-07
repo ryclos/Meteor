@@ -14,13 +14,21 @@ namespace Meteor.Source
             GENERAL = 1, RESPECTOR = 2, HIGHLEVEL = 3, GAMEMASTER = 4, OPERATOR = 5, SECURITY = 6, ADMINISTRATOR = 7
         }
 
+        enum ChatFlags
+        {
+            None = 0,
+            ShortWords = 1
+        }
+
         /// <summary>
         /// On chat
         /// </summary>
         /// <param name="dp"></param>
         private void OnChat(DataPacket dp)
         {
+            Byte _chatFlag = dp.Read<Byte>();
             String _text = dp.Read<String>();
+            String _infoText = dp.Read<String>();
             String[] _chatCommand = _text.Split(new Char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
             if (_chatCommand.Length == 0)
@@ -40,7 +48,28 @@ namespace Meteor.Source
             }
             else
             {
-                // Normal chat
+                Snapshot _snap = new Snapshot();
+                _snap.StartSnapshot(SnapshotType.NORMALCHAT);
+                _snap.Add<UInt32>(this.Player.ObjectId);
+                _snap.Add<Int32>(this.Player.Id);
+                _snap.Add<Byte>((Byte)ChatFlags.None);
+                _snap.Add<String>(_text);
+                _snap.Add<String>("");
+                _snap.Add<Byte>(0); // issf (???)
+                this.SendToVisiblePlayers(_snap);
+
+                //snapshot.SetType(SnapshotType.GET_CLIENT_INFO);
+
+                //snapshot.WriteUInt32(1337); //Source Player Id
+                //snapshot.WriteString(splitString[0]);
+                //snapshot.WriteString(splitString.Length > 1 ? splitString.Skip(1).Aggregate("", (current, s) => current + s) : "");
+
+                //Snapshot _snap = new Snapshot();
+                //_snap.StartSnapshot(SnapshotType.NORMALCHAT);
+                //_snap.Add<Byte>((Byte)ChatFlags.None);
+                //_snap.Add<String>(_text);
+                //_snap.Add<String>("");
+                //this.SendToVisiblePlayers(_snap);
             }
         }
 
